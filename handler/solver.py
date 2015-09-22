@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
-import sys, os
+
 import cv2
 from filematcher import file_filter
 
@@ -62,10 +62,16 @@ def draw_one(img,rect,color):
     cv2.imshow('ff',img)
 
 class Solver(object):
-    def __init__(self):
-      self.face_dector = detector('xml/haarcascade_frontalface_alt.xml')
-      self.mouth_dector = detector('xml/haarcascade_mcs_mouth.xml')
-      self.nose_dector = detector('xml/haarcascade_mcs_nose.xml')
+    def __init__(self,test=False):
+        if(not test): 
+            self.face_dector = detector('xml/haarcascade_frontalface_alt.xml')
+            self.mouth_dector = detector('xml/haarcascade_mcs_mouth.xml')
+            self.nose_dector = detector('xml/haarcascade_mcs_nose.xml')
+        else:
+            self.face_dector = detector('../xml/haarcascade_frontalface_alt.xml')
+            self.mouth_dector = detector('../xml/haarcascade_mcs_mouth.xml')
+            self.nose_dector = detector('../xml/haarcascade_mcs_nose.xml')
+
 
     def objects_filter(self,faces,parts,name='mouth'):
         for face in faces:
@@ -120,14 +126,12 @@ for k,v in dct.iteritems():
 cv2.waitKey(0)
 """
 if __name__ == "__main__":
-    from PIL import Image
-    import numpy as np
     file = file_filter('../xx',['jpg'])
-    solver = Solver()
+    solver = Solver(test=True)
     for name,format in file:
         print name
-        image = Image.open(name)
-        cv_image = np.array(image)
+        #image = Image.open(name)
+        #cv_image = np.array(image)
+        cv_image = cv2.imread(name)
         print solver.solve(cv_image)
-    
                     
