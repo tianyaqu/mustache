@@ -3,7 +3,7 @@ add mustache in the live video
 
 ## what and how
 mustache is a funny web service to add mustache for a human in a live video stream
-it's built with html5 canvas,websocket and opencv
+,it's built with html5 canvas,websocket and opencv
 
 ### details
 opencv:mustache location detection
