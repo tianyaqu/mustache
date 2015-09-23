@@ -17,7 +17,8 @@ class Detector(tornado.websocket.WebSocketHandler):
       def on_message(self, message):
             image = Image.open(StringIO.StringIO(message))
             cv_image = numpy.array(image)
-            self.process(cv_image)
+            if(cv_image.shape):
+                self.process(cv_image)
 
       def on_close(self):
             print 'connection closed'

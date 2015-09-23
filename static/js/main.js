@@ -21,6 +21,13 @@ function getStyle(x, styleProp) {
 
   update = function() {
     ctx.drawImage(video, 0, 0, 320, 240);
+
+    if(canvas.toBlob){
+        canvas.toBlob(function(blob) {
+            ws.send(blob);
+        }, 'image/jpeg');
+    }
+
     if(typeof(openCvCoords) != "undefined")
     {
         if(openCvCoords[0] != -1)
@@ -28,9 +35,6 @@ function getStyle(x, styleProp) {
             ctx.drawImage(mustache,openCvCoords[0], openCvCoords[1], openCvCoords[2], openCvCoords[3]);
         }
     }
-    return canvas.toBlob(function(blob) {
-      return ws.send(blob);
-    }, 'image/jpeg');
   };
 
   video = document.querySelector('video');
