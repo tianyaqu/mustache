@@ -14,3 +14,6 @@ client-->server video frame
 server-->client mustache location
 
 html canvas:pasting mustache template to the live video
+
+## requirement
+tornado,Pillow and opencv
