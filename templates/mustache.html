@@ -1,17 +1,26 @@
 {% extends "_base.html" %}
 
 {% block content %}
-<div class="hero-unit">
-  <video id="live" width="320" height="240" autoplay></video>
-  <canvas width="320" id="canvas" height="240" ></canvas>
-  <img id="target" style="display: inline" />
+<div class="page-header">
+  <h1>Mustache</h1>
+</div>
+<div class="row">
+  <div style="display:inline"  class="span5">
+    <video id="live" width="320" height="240" autoplay></video>
+    <canvas width="320" id="canvas" height="240" ></canvas>
+    </div>
+    <div style="display:inline" class="cc-selector">
+        <input id="huzi1" type="radio" name="mustache"  checked value="0" />
+        <label  class="mustache-cc huzi1" for="huzi1"></label>
+        <input id="huzi2" type="radio" name="mustache" value="1" />
+        <label class="mustache-cc huzi2"for="huzi2"></label>
+        <input id="huzi3" type="radio" name="mustache" value="2" />
+        <label  class="mustache-cc huzi3"for="huzi3"></label>
+    </div>
 </div>
 
-<div class = "mustache-type">
-    <img id="mustache" src="{{ static_url("img/huzi1.png") }}" >
-</div>
+
 {% end %}
-
 {% block scripts %}
 <script src="{{ static_url("js/main.js") }}" type="text/javascript"></script>
 {% end %}
