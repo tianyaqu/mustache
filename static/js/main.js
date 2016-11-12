@@ -50,7 +50,7 @@ function getStyle(x, styleProp) {
 
   ctx = canvas.getContext('2d');
 
-  ws = new WebSocket("ws://" + location.host + "/detector");
+  ws = new WebSocket("wss://" + location.host + "/detector");
 
   ws.onopen = function() {
     return console.log("Opened websocket");

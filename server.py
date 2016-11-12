@@ -13,7 +13,7 @@ from tornado.options import define,options
 from handler.home import HomeHandler
 from handler.wshandler import Detector
 
-define("port",default=8001,help="run on a given port",type=int)
+define("port",default=443,help="run on a given port",type=int)
 
 class Mustache(tornado.web.Application):
     def __init__(self):
@@ -33,7 +33,10 @@ class Mustache(tornado.web.Application):
 
 def run():
     tornado.options.parse_command_line()
-    http_server = tornado.httpserver.HTTPServer(Mustache())
+    http_server = tornado.httpserver.HTTPServer(Mustache(),ssl_options={
+    "certfile": os.path.join(os.path.abspath("cert/"), "chained.pem"),
+    "keyfile": os.path.join(os.path.abspath("cert/"), "domain.key"),
+    })
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
